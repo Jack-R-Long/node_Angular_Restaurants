@@ -37,7 +37,7 @@ app.use(express.static( __dirname + '/public/dist/public' ));
 // Mongoose Schema users 
 var ReviewSchema = new mongoose.Schema({
 	name: {type: String, required: [true, "Must have name"], minlength: [3, "Name must be at least 3 characters"]},
-	stars : {type: Number, min: [1, "Stars must be at least 1"], max: [5, "Max stars is 5"]},
+	stars : {type: Number, required: [true, "Must have stars"], min: [1, "Stars must be at least 1"], max: [5, "Max stars is 5"]},
 	review: {type: String, required: [true, "Must have review"], minlength: [3, "Review must be at least 3 characters"]},
 }, {timestamps: true})
 var RestaurantSchema = new mongoose.Schema({

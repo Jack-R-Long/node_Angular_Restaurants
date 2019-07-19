@@ -1,0 +1,21 @@
+
+<h5>Reviews for {{selectRestaurant.title}}</h5>
+<br>
+<a [routerLink]="['review']" class="btn btn-primary">New Review</a>
+<table class="table mt-2">
+	<thead class="thead-dark">
+		<tr>
+		<th scope="col">Customer</th>
+		<th scope="col">Stars</th>
+		<th scope="col">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let review of selectRestaurant.reviews">
+		<th scope="row">{{review.name}}</th>
+		<th scope="row">{{review.stars}}</th>
+		<th scope="row">{{review.review}}</th>
+		</tr>
+	</tbody>
+	
+	</table>

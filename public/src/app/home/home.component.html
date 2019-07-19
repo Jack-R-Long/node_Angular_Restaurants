@@ -1,0 +1,26 @@
+<br>
+<router-outlet>
+	<a [routerLink]="['new']" class="btn btn-primary">New Restaurant</a>
+	<br>
+	<table class="table">
+		<thead class="thead-dark">
+		  <tr>
+			<th scope="col">Restaurant</th>
+			<th scope="col">Cuisine</th>
+			<th scope="col">Actions</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr *ngFor="let rest of restaurants">
+			<th scope="row">{{rest.title}}</th>
+			<th scope="row">{{rest.cuisine}}</th>
+			<td><a class="btn btn-dark"[routerLink]="['/restaurants/'+rest._id]"  role="button">Read Reviews</a>
+			<a class="btn btn-dark ml-2"[routerLink]="['/restaurants/'+rest._id+'/edit']"  role="button">Update</a>
+			<a class="btn btn-danger ml-2" (click)="deleteRestaurant(rest._id)" role="button">Delete</a>
+			</td>
+		  </tr>
+		</tbody>
+		
+	  </table>
+</router-outlet>
+  <!-- <a [routerLink] = "['create']"> Go to Create</a>   -->

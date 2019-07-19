@@ -1,0 +1,24 @@
+<h5>Write a review for {{editRestaurant.title}}</h5>
+<div class="container border border-dark mb-2">
+	<br>
+	<form (submit)="postReviewData()">
+		{{ newReview | json }}
+		<div class="form-group">
+			<label for="name">Name</label>
+			<p class="text-danger" *ngIf = "postErrors.name != ''">{{postErrors.name}}</p>
+			<input type="text" class="form-control" name="newReview.name" [(ngModel)]="newReview.name"  placeholder="Enter name">
+		</div>
+		<div class="form-group">
+			<label for="stars">Stars</label>
+			<p class="text-danger" *ngIf = "postErrors.stars != ''">{{postErrors.stars}}</p>
+			<input type="number" class="form-control" name="newReview.stars" [(ngModel)]="newReview.stars"  placeholder="Enter stars">
+		</div>
+		<div class="form-group">
+			<label for="review">Review</label>
+			<p class="text-danger" *ngIf = "postErrors.review != ''">{{postErrors.review}}</p>
+			<input type="text" class="form-control" name="newReview.review" [(ngModel)]="newReview.review"  placeholder="Write review">
+		</div>
+		<a [routerLink]="['/restaurants/'+this.editRestaurant._id]">Cancel</a>
+		<button type="submit" class="btn btn-dark mb-2 ml-2">Submit</button>
+	</form>
+</div>

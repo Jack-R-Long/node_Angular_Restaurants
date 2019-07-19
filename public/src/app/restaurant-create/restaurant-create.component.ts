@@ -30,24 +30,34 @@ export class RestaurantCreateComponent implements OnInit {
       'title' : "",
       'cuisine' : ""
     }
-    // console.log("Posting this info", this.newRestaurant)
-    this._httpService.postRestaurant(this.newRestaurant).subscribe(data =>{
-      if (data['error']){
-        console.log("Error creating Restaurant")
-        if (data['error']['errors']['title']){
-          this.postErrors.title =data['error']['errors']['title']['message']
-        }
-        if (data['error']['errors']['cuisine']){
-          this.postErrors.cuisine =data['error']['errors']['cuisine']['message']
-        }
+    //Add method to check title uniquness 
+    this._httpService.getByTitle(this.newRestaurant.title).subscribe(data =>{
+      if (data['message'] == "Match"){
+        console.log("Title already exists")
+        this.postErrors.title ="Title already exists"
       }else {
-        console.log("Posted new Restaurant and returned")
-        this.newRestaurant = {
-          'title' : "",
-          'cuisine' : ""
-        }
-        this._router.navigate(['restaurants']);
+
+        // console.log("Posting this info", this.newRestaurant)
+        this._httpService.postRestaurant(this.newRestaurant).subscribe(data =>{
+          if (data['error']){
+            console.log("Error creating Restaurant")
+            if (data['error']['errors']['title']){
+              this.postErrors.title =data['error']['errors']['title']['message']
+            }
+            if (data['error']['errors']['cuisine']){
+              this.postErrors.cuisine =data['error']['errors']['cuisine']['message']
+            }
+          }else {
+            console.log("Posted new Restaurant and returned")
+            this.newRestaurant = {
+              'title' : "",
+              'cuisine' : ""
+            }
+            this._router.navigate(['restaurants']);
+          }
+        })
       }
+
     })
   }
 

@@ -13,6 +13,7 @@ export class ReviewsComponent implements OnInit {
     cuisine: "",
     reviews: [""],
   }
+  sortedReviews = [];
 
   constructor(
     private _httpService: HttpService,
@@ -30,6 +31,10 @@ export class ReviewsComponent implements OnInit {
     this._httpService.getById(id).subscribe(data =>{
       console.log("Got restaurant by ID and returned", data)
       this.selectRestaurant = data['data']
+      this._httpService.getSortedReviews(id).subscribe(data =>{
+        console.log("Got sorted reviews", data)
+        this.sortedReviews = data['data']
+      })
     })
   }
 

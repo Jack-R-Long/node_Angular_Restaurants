@@ -16,11 +16,12 @@
 			<th scope="row">{{rest.cuisine}}</th>
 			<td><a class="btn btn-dark"[routerLink]="['/restaurants/'+rest._id]"  role="button">Read Reviews</a>
 			<a class="btn btn-dark ml-2"[routerLink]="['/restaurants/'+rest._id+'/edit']"  role="button">Update</a>
+			<button type="button" class="btn btn-info" (click)="showEdit(rest)">Show Nested Edit</button>
 			<a class="btn btn-danger ml-2" (click)="deleteRestaurant(rest._id)" role="button">Delete</a>
 			</td>
 		  </tr>
 		</tbody>
 		
 	  </table>
-</router-outlet>
+	  <app-nested-edit [editRestaurant]='selected_Rest' [is_appear]='show_nest'></app-nested-edit>
   <!-- <a [routerLink] = "['create']"> Go to Create</a>   -->

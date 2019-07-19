@@ -12,6 +12,7 @@ import { RestaurantCreateComponent } from './restaurant-create/restaurant-create
 import { ReviewsComponent } from './reviews/reviews.component';
 import { RestaurantEditComponent } from './restaurant-edit/restaurant-edit.component';
 import { ReviewCreateComponent } from './review-create/review-create.component';
+import { NestedEditComponent } from './nested-edit/nested-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReviewCreateComponent } from './review-create/review-create.component';
     RestaurantCreateComponent,
     ReviewsComponent,
     RestaurantEditComponent,
-    ReviewCreateComponent
+    ReviewCreateComponent,
+    NestedEditComponent
   ],
   imports: [
     BrowserModule,

@@ -27,4 +27,10 @@ export class HttpService {
   postReview(newReview){
     return this._http.post('/reviews', newReview)
   }
+  getSortedReviews(id){
+    return this._http.get(`/reviews/${id}`)
+  }
+  getByTitle(title){
+    return this._http.get(`/restaurants_title/${title}`)
+  }
 }

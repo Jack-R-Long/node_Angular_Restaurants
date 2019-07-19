@@ -8,6 +8,9 @@ import {HttpService} from '../http.service' ;
 })
 export class HomeComponent implements OnInit {
   restaurants = [];
+  selected_Rest : any;
+  show_nest = true;
+  
 
   constructor(
     private _httpService: HttpService
@@ -28,6 +31,10 @@ export class HomeComponent implements OnInit {
       console.log("Deleted restaurant and returned")
       this.getRestFromService()
     })
+  }
+  showEdit(rest){
+    console.log("Trying to edit this restaurant", rest)
+    this.selected_Rest = rest 
   }
 
 }

@@ -81,6 +81,22 @@ app.get('/restaurants/:id', (req, res)=> {
 		}
 	})
 })
+app.get('/restaurants_title/:title', (req, res)=> {
+	Restaurant.findOne({title: req.params.title}, (err, Restaurant_arr)=> {
+		if (err) {
+			console.log("Error finding Restaurant by title")
+			res.json({message: "error", error: err})
+		}else {
+			console.log(Restaurant_arr)
+			// res.json({message: "Match", data: Restaurant_arr})
+			if (Restaurant_arr != null) {
+				res.json({message: "Match", data: Restaurant_arr})
+			}else {
+				res.json({message: "No match", data: Restaurant_arr})
+			}
+		}
+	})
+})
 app.post('/restaurants', (req, res)=>{
 	Restaurant.create(req.body, (err, new_Restaurant_array)=>{
 		if (err) {
@@ -127,6 +143,19 @@ app.post('/reviews', (req, res)=>{
 					res.json({message: "Success", data: new_Restaurant_arr})
 				}
 			})
+		}
+	})
+})
+app.get('/reviews/:id', (req, res)=>{
+	Restaurant.findOne({_id: req.params.id}, (err, restaurant_select)=>{
+		if (err){
+			console.log("Error finding by id")
+			res.json({message: "Error", error: err})	
+		}else{
+			console.log(restaurant_select)
+			var reviews_list = restaurant_select.reviews 
+			reviews_list.sort((a, b) => (a.stars < b.stars) ? 1 : -1)
+			res.json({message: "Success", data: reviews_list})
 		}
 	})
 })
